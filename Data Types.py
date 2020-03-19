@@ -12,3 +12,6 @@ print(var)
 print(lt)
 print('Done test')
 print('Done changing')
+print('Done changing')
+print('Done2')
+
