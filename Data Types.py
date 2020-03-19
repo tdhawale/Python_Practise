@@ -11,4 +11,4 @@ lt = list(var)
 print(var)
 print(lt)
 print('Done test')
-
+print('Done changing')
