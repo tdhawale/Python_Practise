@@ -10,5 +10,4 @@ var = range(10)
 lt = list(var)
 print(var)
 print(lt)
-<<<<<<< HEAD
 print('Done changing')
