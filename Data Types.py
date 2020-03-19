@@ -10,9 +10,5 @@ var = range(10)
 lt = list(var)
 print(var)
 print(lt)
-<<<<<<< HEAD
-print('Done changing')
-=======
-print('Done Printing')
-print('Changes done from github')
->>>>>>> 84ffe6cd94ef431ffb789e559e52633eda247e28
+print('Done test')
+
