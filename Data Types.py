@@ -1,7 +1,7 @@
 
 a = 3.4
 b = int(a)
-
+print("Initial line for testing Git merge conflict")
 c = complex(a,b)
 
 print(a , b , c)
