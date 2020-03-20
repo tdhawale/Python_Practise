@@ -1,5 +1,5 @@
 #List is mutable and we can change the values
-from builtins import print, min
+from builtins import min
 
 fruits = ["Apple","Mango","Banana","Carrot"]
 print("**************************************************")
@@ -17,7 +17,7 @@ print(fruits)
 print(fruits[2:5])      # Prints elements of the list from index 1 to 4
 print(fruits[2:6])      # Prints elements of the list from index 2 to index 5()
 print(fruits[1:])       # Prints all the list element from 1 till the end of the list
-print(fruits[-5])       # Prints array in backward direction
+#print(fruits[-5])       # Prints array in backward direction
 ###############################################################
 #We can even make lists of uncommon elements like string and intgers
 container = [3,"Mita",4,"Babita"]
