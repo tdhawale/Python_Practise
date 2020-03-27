@@ -132,3 +132,4 @@ print("-------------------------------------------------------------------------
 print("The length of array using len function is :", len(a))
 print("The length of array using buffer_info function is :",
       a.buffer_info()[1])
+print("Stop for today")
