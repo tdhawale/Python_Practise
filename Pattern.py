@@ -1,14 +1,14 @@
 
-for i in range (0, n+1)
-    for j in range(0, n+1)
-        if i + j == n:
-            pattern[i][j] = '*'
-        elif j == n / 2:
-            pattern[i][j] = '*'
-        elif i == j:
-            pattern[i][j] = '*'
-        elif :
-            pattern[i][j] = ' '
+# for i in range (0, n+1)
+#     for j in range(0, n+1)
+#         if i + j == n:
+#             pattern[i][j] = '*'
+#         elif j == n / 2:
+#             pattern[i][j] = '*'
+#         elif i == j:
+#             pattern[i][j] = '*'
+#         elif :
+#             pattern[i][j] = ' '
 
 """
 for i in range(n, -1, -1):
@@ -25,7 +25,7 @@ def print_2d_array(arr):
         print("")
 
 
-pattern == [[]]
+# pattern == [[]]
 
 
 def drawStar(n):
@@ -41,3 +41,6 @@ def drawStar(n):
             else:
                 pattern[i][j] = ' '
 
+
+n = int(input("Enter a multiple of 2:"))
+# drawStar(n)
