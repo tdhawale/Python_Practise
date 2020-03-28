@@ -13,3 +13,9 @@ git add.
 git commit -m "New Home dir"
 git push
 clear
+git pull
+git status
+git add .
+git commit -m "Home DIR chg"
+git push
+git status
