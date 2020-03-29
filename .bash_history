@@ -35,3 +35,23 @@ git status
 git add .
 git commit -m "Git hub steps"
 git push
+git checkout master
+git status
+git add .
+git commit -m "bash history"
+git push
+git checkout master
+git pull
+git status
+clear
+git add .
+git commit -m "Deleted git details"
+git push
+git status
+clear
+git add.
+clear
+git add .
+git commit -m "Git Details"
+git push
+clear
