@@ -55,3 +55,59 @@ git add .
 git commit -m "Git Details"
 git push
 clear
+git status
+clear
+git add .
+git commit -m "changes on 3/29/2020"
+git push
+clear
+ls
+cd ..
+ls
+cd Data_Science/
+clear
+git clone https://github.com/tdhawale/Data_Science.git
+git status
+git add .
+clear
+git clone https://github.com/tdhawale/Data_Science.git
+clear
+ls
+cd Data_Science/
+git status
+clear
+ls
+cd ..
+clear
+ls
+git clone /e/Workspace/Python/Data_Science/Introduction.py
+clear
+git clone https://github.com/tdhawale/Data_Science.git
+clear
+clear
+ls
+cd Data_Science/
+git clone https://github.com/tdhawale/Data_Science.git
+clear
+ls
+cd ..
+clear
+ls
+cd ..
+ls
+clear
+cd Python/
+ls
+clear
+git clone https://github.com/tdhawale/Data_Science.git
+clear
+ls
+cd Data_Science/
+clear
+ls
+clear
+git status
+git add .
+git commit -m "Initial Commit"
+git push
+clear

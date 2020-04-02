@@ -14,3 +14,9 @@ git commit -m "Your message"
 git push --set-upstream origin change_home
 ------------------------------------------------------------------>
 git merge origin/master [git merge origin/development]
+------------------------------------------------------------------>
+# While creating new repostiory
+git clone "Your repository Url"
+then git add .
+git commit -m "Your Message"
+git push
