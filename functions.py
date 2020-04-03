@@ -45,4 +45,11 @@ print("The address of a is :", id(a))
 print("The address of 8 is :", id(10))
 update_pass_by_value(id(a))       # we are simply passing the value
 print("The address of a is ", id(a),"and the value of a is ", a)
+print("-----------------------------------------------------------")
+def fun(param = 1):
+    print("The parameter value is {} which is passed as input".format(param))
 
+fun()   # if no value is passed it will take the default value
+#above statement output will be-->The parameter value is 1 which is passed as input
+fun(19) # if some value is passed then it will take the passed value
+#above statement output will be-->The parameter value is 19 which is passed as input
