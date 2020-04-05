@@ -29,6 +29,8 @@ while cont == 'Y' or cont == 'y':
     print("4. function arrange()")
     print("5. function zeros()")
     print("6. function ones()")
+    print("7. function eye()[prints identity matrix]")
+    print("8. function random.rand()")
     view = int(input("Enter the type of array you want to view: "))
     if cont == 'Y' or cont == 'y':
         if view == 1:
@@ -91,6 +93,14 @@ while cont == 'Y' or cont == 'y':
             print("The type of linspace array is: ", arr_linspace.dtype)
             print("The elements of linspace array are:", end="")
             print(arr_linspace)
+            # retstep sspecifies the length of the step
+            arr_linspace = linspace(0 , 15 , 16, retstep = True)
+            print("The elements of linspace array along with its step size are:" , end = "")
+            print(arr_linspace)
+            print()
+            arr_linspace = linspace(0 , 15 , 31, retstep = True)
+            print("The elements of linspace array along with its step size are:" , end = "")
+            print(arr_linspace)
             print()
             cont = input("Do you want to continue (Y/N): ")
         elif view == 3:
@@ -124,7 +134,7 @@ while cont == 'Y' or cont == 'y':
             print("---------------------------------------------------------")
             print("Creating arrays using ARANGE() function")
             print("---------------------------------------------------------")
-            print("Information on LOGSPACE() function is given below")
+            print("Information on Linspace() function is given below")
             print("Here we specify -->START -->STOP -->STEP")
             print(
                 "But here in contrast of linspace where the array is divided into step parts")            # here we specify -->START -->STOP -->STEP
@@ -142,8 +152,13 @@ while cont == 'Y' or cont == 'y':
             print("---------------------------------------------------------")
             print("Creating arrays using ZEROS() function")
             print("---------------------------------------------------------")
+            # Creates a one dimenstional array with 5 zeros
             arr_zeros = zeros(5, int)
             print("The elements of array created by ZEROS() are:", arr_zeros)
+            print()
+            del arr_zeros
+            arr_zeros = zeros((4,6),int)
+            print("The elements of 2D array created by ZEROS() are:" , arr_zeros)
             print()
             cont = input("Do you want to continue (Y/N): ")
         elif view == 6:
@@ -153,10 +168,33 @@ while cont == 'Y' or cont == 'y':
             arr_ones = ones(5)
             print("The default type will be float")
             print(
-                "The elements of array created by ONES() are[default]:", arr_ones)
+                "The elements of array created by ONES() are[default type float]:", arr_ones)
+            # Creating an array of type int
             arr_ones = ones(5, int)
             print("The elements of array created by ONES() are:", arr_ones)
             print()
+            cont = input("Do you want to continue (Y/N): ")
+        elif view == 7 :
+            arr_identity = eye(4)
+            print("The identity matrix is: ",arr_identity)
+            cont = input("Do you want to continue (Y/N): ")
+        elif view == 8 :
+            arr_rand = random.rand(3)
+            # prints 3 random values between 0 and 1
+            print("The random array with 3 elements is: ",arr_rand)
+            del arr_rand
+            arr_rand = random.rand(3,2)
+            print("The random array with 3 rows and 2 colums is: ",arr_rand)
+            # Randn return a simple form of standard normal or gaussian distribution
+            arr_randn = random.randn(4,4)
+            print("The random array with 3 rows and 2 colums is: " , arr_randn)
+            
+            #Randint generates a random variable between the specififed range
+            arr_randint = random.randint(1,100)             # default size 1 i.r only one element
+            print(("The random array", arr_randint))
+            del arr_randint
+            arr_randint = random.randint(1,100,size = (4,4))   #(low,high, size(Matrix of size))
+            print("Multidimensional random array is: ", arr_randint)
             cont = input("Do you want to continue (Y/N): ")
     else:
         break

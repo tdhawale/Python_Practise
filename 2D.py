@@ -31,7 +31,7 @@ print("The 3D array generated is ",arr1.reshape(2,2,3))
 print("--------------------------------------------------------------------------------")
 # Converting an 2D array into a matrix
 del  arr1
-arr1 = array([[1,2],[1,2]])
+arr1 = array([[1,8],[4,2]])
 arr2 = 3*arr1.copy()
 print("The firse array",arr1)
 print("The second array",arr2)
@@ -42,8 +42,10 @@ mat3 = mat1*mat2
 print("The matrix after multiplication is :",mat3)
 print("--------------------------------------------------------------------------------")
 print("The diagonal elements of matrix are: ",diagonal(mat3))
-print("The min element is: ",mat3.min())
-print("The max element is: ",mat3.max())
+print("The min element is: ",mat3.min(),"at index",mat3.argmax())
+print("The max element is: ",mat3.max(),"at index",mat3.argmin() )
+print("--------------------------------------------------------------------------------")
+
 
 
 
