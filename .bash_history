@@ -111,3 +111,10 @@ git add .
 git commit -m "Initial Commit"
 git push
 clear
+pwd
+clear
+git status
+git pull
+git add . 
+git commit -m "Commit on 4/5/2020"
+git push

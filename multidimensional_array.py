@@ -179,6 +179,8 @@ while cont == 'Y' or cont == 'y':
             print("The identity matrix is: ",arr_identity)
             cont = input("Do you want to continue (Y/N): ")
         elif view == 8 :
+            arr_rand = random.rand(1)
+            print("The random array with 1 elements is: " , arr_rand)
             arr_rand = random.rand(3)
             # prints 3 random values between 0 and 1
             print("The random array with 3 elements is: ",arr_rand)
