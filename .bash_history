@@ -118,3 +118,19 @@ git pull
 git add . 
 git commit -m "Commit on 4/5/2020"
 git push
+pwd
+clear
+git status
+git add .
+git pull
+git add .
+git commit -m "Learning Pandas"
+git push
+clear
+git stage
+cleat
+clear
+git status
+git add .
+git commit -m "Learning Pandas"
+git push
