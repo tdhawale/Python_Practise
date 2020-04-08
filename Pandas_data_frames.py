@@ -82,13 +82,39 @@ print(lst)
 df['new_index'] = lst
 print("The data frame after adding new index is")
 print(df)
-
+					#      c1  c2  c3  c4  c5  c6  c7  c8  c9  c10 new_index
+					# r1    1   2   3   4   5   6   7   8   9   10         a
+					# r2   11  12  13  14  15  16  17  18  19   20         b
+					# r3   21  22  23  24  25  26  27  28  29   30         c
+					# r4   31  32  33  34  35  36  37  38  39   40         d
+					# r5   41  42  43  44  45  46  47  48  49   50         e
+					# r6   51  52  53  54  55  56  57  58  59   60         f
+					# r7   61  62  63  64  65  66  67  68  69   70         g
+					# r8   71  72  73  74  75  76  77  78  79   80         h
+					# r9   81  82  83  84  85  86  87  88  89   90         i
+					# r10  91  92  93  94  95  96  97  98  99  100         j
 
 # Now the index will be changed from r1 ... to a ,b ..
 df.set_index(keys = 'new_index', inplace = True)
 print(df)
+					#            c1  c2  c3  c4  c5  c6  c7  c8  c9  c10
+					# new_index
+					# a           1   2   3   4   5   6   7   8   9   10
+					# b          11  12  13  14  15  16  17  18  19   20
+					# c          21  22  23  24  25  26  27  28  29   30
+					# d          31  32  33  34  35  36  37  38  39   40
+					# e          41  42  43  44  45  46  47  48  49   50
+					# f          51  52  53  54  55  56  57  58  59   60
+					# g          61  62  63  64  65  66  67  68  69   70
+					# h          71  72  73  74  75  76  77  78  79   80
+					# i          81  82  83  84  85  86  87  88  89   90
+					# j          91  92  93  94  95  96  97  98  99  100
 print("Accessing the data frame using new index values")
 print(df.loc[['a','b']])
+					#            c1  c2  c3  c4  c5  c6  c7  c8  c9  c10
+					# new_index
+					# a           1   2   3   4   5   6   7   8   9   10
+					# b          11  12  13  14  15  16  17  18  19   20
 print("-----------------------------------------------------------------------")
 # Head return the first n rows
 print("The first 3 rows are")
@@ -96,8 +122,37 @@ print(df[df['c1'] > 25].head(3)[['c2','c3']])
 print("-----------------------------------------------------------------------")
 print("The summary of the data frame")
 print(df.info())
+					# The summary of the data frame
+					# <class 'pandas.core.frame.DataFrame'>
+					# Index: 10 entries, a to j
+					# Data columns (total 10 columns):
+					#  #   Column  Non-Null Count  Dtype
+					# ---  ------  --------------  -----
+					#  0   c1      10 non-null     int32
+					#  1   c2      10 non-null     int32
+					#  2   c3      10 non-null     int32
+					#  3   c4      10 non-null     int32
+					#  4   c5      10 non-null     int32
+					#  5   c6      10 non-null     int32
+					#  6   c7      10 non-null     int32
+					#  7   c8      10 non-null     int32
+					#  8   c9      10 non-null     int32
+					#  9   c10     10 non-null     int32
+					# dtypes: int32(10)
+					# memory usage: 632.0+ bytes
+					# None
 print("The description of the data frame")
 print(df.describe())
+					# The description of the data frame
+					#               c1         c2         c3  ...         c8         c9         c10
+					# count  10.000000  10.000000  10.000000  ...  10.000000  10.000000   10.000000
+					# mean   46.000000  47.000000  48.000000  ...  53.000000  54.000000   55.000000
+					# std    30.276504  30.276504  30.276504  ...  30.276504  30.276504   30.276504
+					# min     1.000000   2.000000   3.000000  ...   8.000000   9.000000   10.000000
+					# 25%    23.500000  24.500000  25.500000  ...  30.500000  31.500000   32.500000
+					# 50%    46.000000  47.000000  48.000000  ...  53.000000  54.000000   55.000000
+					# 75%    68.500000  69.500000  70.500000  ...  75.500000  76.500000   77.500000
+					# max    91.000000  92.000000  93.000000  ...  98.000000  99.000000  100.000000
 print("The mean value of clumn 1 is")
 print(df['c1'].mean())
 print("The mean value of row 1 is")

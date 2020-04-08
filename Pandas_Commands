@@ -1,0 +1,744 @@
+------------------------------------------------------------------------------------------------------
+-->Filling Blank value
+------------------------------------------------------------------------------------------------------
+data_dic =  {'A':[1,2,np.nan,4,np.nan],
+            'B':[np.nan,np.nan,np.nan,np.nan,np.nan],
+            'C':[11,12,13,14,15],
+            'D':[16,np.nan,18,19,20]}
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->Series
+------------------------------------------------------------------------------------------------------
+Creates a series in python. Series is like a table which consists of keys = columns and index = rows
+
+my_label = ['x','y','z']
+my_data = [100,200,300]
+ser = pd.Series(data = my_data, index = my_label)
+                    #The Series created from List is:
+                    #x    100
+                    #y    200
+                    #z    300
+                    #dtype: int64
+
+
+
+# You can use even use dictionary to create series
+dict_spain = {'Total Cases':135032,'Total Deaths':13169,'Total Recovered':40437,'Active Cases':81426}
+ser_spain = pd.Series(dict_spain)
+                    #COVID-19 updates for Spain
+                    #Total Cases        135032
+                    #Total Deaths        13169
+                    #Total Recovered     40437
+                    #Active Cases        81426
+                    #dtype: int64
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->isnull() and notnull()
+------------------------------------------------------------------------------------------------------
+Determines whether the values are null or not
+isnull() will return true if the value is null
+notnull() will return true if the value is not null
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->head() and tail()
+------------------------------------------------------------------------------------------------------
+head(2) returns first two values from  the top
+head()  returns first five values from the top # Default value is 5
+
+tail(10) returns the ten values from the bottom
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->Creating Data Frame
+------------------------------------------------------------------------------------------------------
+Creates a data frame
+
+index = 'r1 r2 r3 r4 r5 r6 r7 r8 r9 r10'.split()
+cols = 'c1 c2 c3 c4 c5 c6 c7 c8 c9 c10'.split()
+arr_2d = np.arange(1,101).reshape(10,10)
+
+df = pd.DataFrame( data = arr_2d , index = index , columns = cols )
+
+axis = 1 --> Column         (Y-axis)
+axis = 0 --> Row            (X-axis)
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->Create Data Frame from file
+------------------------------------------------------------------------------------------------------
+pay = pd.read_csv('City_of_Chicago_Payroll_Data.csv')
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->Accessing Columns of a data frame
+------------------------------------------------------------------------------------------------------
+# Access single column
+df['c1']
+
+
+# Access multiple columns
+df[['c1','c3']]
+
+# Access a particular row of 2 columns
+df[(df['c1']>5)&(df['c2']%6 == 0)][['c3','c5']].loc['r2']
+df[['col1','col2']].loc['r2']
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->Accessing rows of a data frame
+------------------------------------------------------------------------------------------------------
+# Access single row
+df.loc['r1']
+
+# Access Multiple rows
+df.loc['r3','c4']
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->Adding new column
+------------------------------------------------------------------------------------------------------
+df['tejas'] = df['c1'] + df ['c6']
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->Dropping a column
+------------------------------------------------------------------------------------------------------
+# We have to delete column so axis = 1
+# If you don't write inplace = True, The column will not be permanently deleted from the data frame
+df.drop('tejas', axis = 1, inplace = True)
+df1.drop(['C','D'], axis = 1, inplace = True)
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->Accessing specific rows and columns (Subset of data frame)
+------------------------------------------------------------------------------------------------------
+df.loc[['r2','r1'],['c3','c5']]
+df.loc[: ,['c1','c2','c3']]         # All rows and specific columns
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->Conditional selection or boolean masking
+------------------------------------------------------------------------------------------------------
+df[(df['c1']>5)&(df['c2']%6 == 0)]
+# For the data frame elements for which the condition will not satisfy but are included in the
+# ouput the value will ne NaN (eg a row satisfies the condition but one of its column has no value)
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->Setting index for faster access
+------------------------------------------------------------------------------------------------------
+# We first need to add a new column to the data frame
+lst = 'a b c d e f g h i j'.split()
+df['new_index'] = lst
+
+					#      c1  c2  c3  c4  c5  c6  c7  c8  c9  c10 new_index
+					# r1    1   2   3   4   5   6   7   8   9   10         a
+					# r2   11  12  13  14  15  16  17  18  19   20         b
+					# r3   21  22  23  24  25  26  27  28  29   30         c
+					# r4   31  32  33  34  35  36  37  38  39   40         d
+					# r5   41  42  43  44  45  46  47  48  49   50         e
+					# r6   51  52  53  54  55  56  57  58  59   60         f
+					# r7   61  62  63  64  65  66  67  68  69   70         g
+					# r8   71  72  73  74  75  76  77  78  79   80         h
+					# r9   81  82  83  84  85  86  87  88  89   90         i
+					# r10  91  92  93  94  95  96  97  98  99  100         j
+
+# Set Index
+df.set_index(keys = 'new_index', inplace = True)
+
+					#            c1  c2  c3  c4  c5  c6  c7  c8  c9  c10
+					# new_index
+					# a           1   2   3   4   5   6   7   8   9   10
+					# b          11  12  13  14  15  16  17  18  19   20
+					# c          21  22  23  24  25  26  27  28  29   30
+					# d          31  32  33  34  35  36  37  38  39   40
+					# e          41  42  43  44  45  46  47  48  49   50
+					# f          51  52  53  54  55  56  57  58  59   60
+					# g          61  62  63  64  65  66  67  68  69   70
+					# h          71  72  73  74  75  76  77  78  79   80
+					# i          81  82  83  84  85  86  87  88  89   90
+					# j          91  92  93  94  95  96  97  98  99  100
+
+# Accessing the data frame using new index values
+print(df.loc[['a','b']])
+					#            c1  c2  c3  c4  c5  c6  c7  c8  c9  c10
+					# new_index
+					# a           1   2   3   4   5   6   7   8   9   10
+					# b          11  12  13  14  15  16  17  18  19   20
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->info()
+------------------------------------------------------------------------------------------------------
+# Information of the data frame
+df.info()
+					# The summary of the data frame
+					# <class 'pandas.core.frame.DataFrame'>
+					# Index: 10 entries, a to j
+					# Data columns (total 10 columns):
+					#  #   Column  Non-Null Count  Dtype
+					# ---  ------  --------------  -----
+					#  0   c1      10 non-null     int32
+					#  1   c2      10 non-null     int32
+					#  2   c3      10 non-null     int32
+					#  3   c4      10 non-null     int32
+					#  4   c5      10 non-null     int32
+					#  5   c6      10 non-null     int32
+					#  6   c7      10 non-null     int32
+					#  7   c8      10 non-null     int32
+					#  8   c9      10 non-null     int32
+					#  9   c10     10 non-null     int32
+					# dtypes: int32(10)
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->describe()
+------------------------------------------------------------------------------------------------------
+# Description of the data frame
+df.describe()
+					# The description of the data frame
+					#               c1         c2         c3  ...         c8         c9         c10
+					# count  10.000000  10.000000  10.000000  ...  10.000000  10.000000   10.000000
+					# mean   46.000000  47.000000  48.000000  ...  53.000000  54.000000   55.000000
+					# std    30.276504  30.276504  30.276504  ...  30.276504  30.276504   30.276504
+					# min     1.000000   2.000000   3.000000  ...   8.000000   9.000000   10.000000
+					# 25%    23.500000  24.500000  25.500000  ...  30.500000  31.500000   32.500000
+					# 50%    46.000000  47.000000  48.000000  ...  53.000000  54.000000   55.000000
+					# 75%    68.500000  69.500000  70.500000  ...  75.500000  76.500000   77.500000
+					# max    91.000000  92.000000  93.000000  ...  98.000000  99.000000  100.000000
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->min() , max() , mean()
+------------------------------------------------------------------------------------------------------
+# Pandas is ignoring NaN values in calculation.
+# So Pandas is used to handle the missing data in python
+df['c1'].min()
+df['c1'].max()
+df['c1'].mean()
+sum(cust['cc_exp'].apply(lambda x: x[5:]) == '19')
+
+#Mean along columns
+df.mean(axis = 1)
+                        #new_index
+                        #a     5.5
+                        #b    15.5
+                        #c    25.5
+                        #d    35.5
+                        #e    45.5
+                        #f    55.5
+                        #g    65.5
+                        #h    75.5
+                        #i    85.5
+                        #j    95.5
+                        #dtype: float64
+
+
+
+------------------------------------------------------------------------------------------------------
+-->unique()
+------------------------------------------------------------------------------------------------------
+print("How many unique values are there in the column")
+print(df['col_2'].unique())
+                    # [111 222 333 555]
+
+
+
+git 
+
+------------------------------------------------------------------------------------------------------
+-->nunique()
+------------------------------------------------------------------------------------------------------
+print("The number of unique elements in the data frame",df['col_2'].nunique() )
+                    # The number of unique elements in the data frame 4
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->groupby()
+------------------------------------------------------------------------------------------------------
+# Groupby is one of the most important and key functionality in pandas. It allows us to group data together, call
+# aggregate functions and combine the results in three steps split-apply-combine:
+
+# Split: In this process, data contained in a pandas object (e.g. Series, DataFrame) is split into groups based
+# on one or more keys that we provide. The splitting is performed on a particular axis of an object.
+# For example, a DataFrame can be grouped on its rows (axis=0) or its columns (axis=1).
+#
+# apply: Once splitting is done, a function is applied to all groups independently, producing a new value.
+#
+# combine: Finally, the results of all those functions applications are combined into a resultant object.
+# The form of the resulting object will usually depend on what's being done to the data.
+
+by_customer = df.groupby('Customer')
+print(by_customer.mean().loc[['Mark','Ray','Sam']])
+
+by_store = df.groupby('Store')
+print(by_store.sum())
+
+pay[pay['Department'] == 'POLICE'].groupby('Salary or Hourly')
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->apply()
+------------------------------------------------------------------------------------------------------
+#to apply certain values to the elements
+df['col_1'] = df['col_1'].apply(lambda x : m.sqrt(x))
+df['col_1'] = df['col_1'].apply(mulby2)
+cust['email'].apply(lambda x: x.split('@')[1]).value_counts().head(5)
+cust[cust['email'].apply(lambda x: x.split('@')[1]) == 'am.edu']
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->value_counts()
+------------------------------------------------------------------------------------------------------
+# Determine how much times the value appears in the column
+# What are the three most common customer's names
+# value_counts() returns object containing counts of unique values. The resulting object will be in descending order
+# so that the first element is the most frequently-occurring element. Excludes NA values by default.
+# What are two most common professions
+
+df['col_2'].value_counts()
+                    # 111    2
+                    # 222    1
+                    # 333    1
+                    # 555    1
+                    # Name: col_2, dtype: int64
+
+
+
+
+------------------------------------------------------------------------------------------------------
+--count()
+------------------------------------------------------------------------------------------------------
+# gives the count of the matched records
+cust[cust['profession'] == 'Structural Engineer'].count()
+cust[(cust['profession'] == 'Structural Engineer') & (cust['gender'] == 'Male') ].count()
+
+
+How many 'NaN' you have in each column in your data?
+#pay['Name'].isna().sum()
+#pay.isnull().sum(axis = 0)['Typical Hours']
+pay.isnull().sum(axis = 0)
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->idxmin() and idxmax()
+------------------------------------------------------------------------------------------------------
+#gives the index of minimum value in that column
+
+#Find an employee who has the minimum salary
+pay.loc[pay['Salaries'].idxmin()]
+# Since we get the index of the minimum value location , we can display the data using row and the index
+# so we used row
+
+pay.loc[pay['Salaries'].idxmax()]
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->str.replace()
+------------------------------------------------------------------------------------------------------
+pay['H_Rate'] = pay['Hourly Rate'].str.replace('$','').astype(float)
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->sort_values()
+------------------------------------------------------------------------------------------------------
+df.sort_values(by = 'col_2', ascending = False, na_position = 'first')
+                    #    col_1  col_2    col_3
+                    # 5      5    555      NaN
+                    # 3      3    333  charlie
+                    # 2      2    222    bravo
+                    # 1      1    111    alpha
+                    # 4      4    111      NaN
+df.sort_values(by = 'col_3', ascending = False, na_position = 'first')
+                    #    col_1  col_2    col_3
+                    # 4      4    111      NaN
+                    # 5      5    555      NaN
+                    # 3      3    333  charlie
+                    # 2      2    222    bravo
+                    # 1      1    111    alpha
+
+
+
+------------------------------------------------------------------------------------------------------
+-->transpose()
+------------------------------------------------------------------------------------------------------
+# change the dimension
+df[cond].transpose()
+                    # Condition 2
+                    #    col_1  col_2    col_3
+                    # 3      3    333  charlie
+
+
+                    #             3
+                    # col_1        3
+                    # col_2      333
+                    # col_3  charlie
+
+
+
+------------------------------------------------------------------------------------------------------
+-->pivot table()
+------------------------------------------------------------------------------------------------------
+df['col_1'] = df['col_1'].apply(lambda x : x*x )
+print(df.pivot_table(values = 'col_2', index = 'col_1',columns = 'col_3'))
+# The elements of col_2 will be the values
+# The elements of 'Col_1' will become the rows
+# THe elemets of 'Col_3' will bwcome the columns
+
+                    # Original
+                    #    col_1  col_2    col_3
+                    # 1      1    111    alpha
+                    # 2      2    222    bravo
+                    # 3      3    333  charlie
+                    # 4      4    111      NaN
+                    # 5      5    555      NaN
+
+
+                    #Pivot table
+                    # col_3  alpha  bravo  charlie
+                    # col_1
+                    # 2.0    111.0    NaN      NaN
+                    # 4.0      NaN  222.0      NaN
+                    # 6.0      NaN    NaN    333.0
+
+# print(df.pivot_table(values = 'col_3', index = 'col_2',columns = 'col_1'))
+# It gave an error because pivot aggregates only numeric data
+
+# Creating DataFrame
+data = {'A':['foo','foo','foo','bar','bar','bar'],
+     'B':['one','one','two','two','one','one'],
+       'C':['x','y','x','y','x','y'],
+       'D':[1,3,2,5,4,1]}
+
+foobar = pd.DataFrame(data)
+print(foobar.pivot_table(values = 'D',index = ['A','B'],columns = 'C'))
+                    # C          x    y
+                    # A   B
+                    # bar one  4.0  1.0
+                    #     two  NaN  5.0
+                    # foo one  1.0  3.0
+                    #     two  2.0  NaN
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->MultiLevel Index()
+------------------------------------------------------------------------------------------------------
+# Here we have two lists which will be indexes for the dataframe
+index = [['a','a','a','b','b','b','c','c','d','d'],[1,2,3,1,2,3,1,2,1,2]]
+cols = 'c1 c2 c3 c4 c5 c6 c7 c8 c9 c10'.split()
+arr2 = np.random.randint(1,100, size = (10,10))
+df = pd.DataFrame(data = arr2 , index = index, columns = cols)
+
+                         c1  c2  c3  c4  c5  c6  c7  c8  c9  c10
+                    a 1   9  68  88  74   6  88  47  90  74   63
+                      2  58  87  76  50  51  80  74  71  20   81
+                      3  34  32   5  11  65  35  31  36  65   68
+                    b 1  62  80  57  16  57  27  77  45  18   41
+                      2  27  95  56  95  35  36  48  86  76   18
+                      3  97  57  46  50   7  49   4  21  27   41
+                    c 1  58  85   7   4  63  85  70  57  93   84
+                      2  70  93  48  82  89  15  31  71  77   13
+                    d 1  38  15  96  64  37  70   6  38  20   46
+                      2  81  31  56  97  62  44  37  65  84   81
+
+# Accessing elements of Hierarchial  data drame
+# The idea is to go from outside to inside i.e from left to right
+df.loc['a'].loc[2]['c5']
+
+
+# Setting up index names for the hierarchial data frame
+print("The index names for hierarchical data frame is:",df.index.names)
+                   # The index names for hierarchical data frame is: [None, None]
+
+df.index.names = ['L1', 'L2']
+
+print("The index names for hierarchical data frame is:",df.index.names)
+                    # The index names for hierarchical data frame is: ['L1', 'L2']
+
+# The new data frame is
+df.loc[: ,['c1','c2','c3']]
+
+# Filtering based on second index
+df.xs(key = 1 , level = 'L2')
+# FIltering all values where level 2 value is 1  using .loc it would have been possible to filter index level 'L1'
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->dropna()
+------------------------------------------------------------------------------------------------------
+Drop all the missing values
+# All rows which have 3 non NaN elements will be returned
+df.dropna(thresh = 3)
+
+# Dropna value is performed on rows . We can also perform it on columns
+df.dropna(axis = 1, thresh = 5)
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->fillna()
+------------------------------------------------------------------------------------------------------
+# Fill missing values
+1. Fill with value
+df1.fillna(value = (df.mean(axis = 1).loc[1]), inplace = True)
+df1.fillna(value = 111, inplace = True)
+                    #        A      B   C      D
+                    # 0    1.0  111.0  11   16.0
+                    # 1    2.0  111.0  12  111.0
+                    # 2  111.0  111.0  13   18.0
+                    # 3    4.0  111.0  14   19.0
+                    # 4  111.0  111.0  15   20.0
+
+
+2. Forward Fill
+# Method Forward fill . wherever there is NaN , the previous value will be forwarded to the NaN cell
+df1.fillna(method = 'ffill', inplace = True)
+                    # Original before forward fill 2 will go to NaN , 4 will go to Nan
+                    # since for column B there is no value to be forwarded it will remain NaN
+                    #      A   B   C     D
+                    # 0  1.0 NaN  11  16.0
+                    # 1  2.0 NaN  12   NaN
+                    # 2  NaN NaN  13  18.0
+                    # 3  4.0 NaN  14  19.0
+                    # 4  NaN NaN  15  20.0
+
+
+
+
+                    #      A   B   C     D
+                    # 0  1.0 NaN  11  16.0
+                    # 1  2.0 NaN  12  16.0
+                    # 2  2.0 NaN  13  18.0
+                    # 3  4.0 NaN  14  19.0
+                    # 4  4.0 NaN  15  20.0
+
+3.  Backward Fill
+# Method Forward fill . wherever there is NaN , the next value will be forwarded
+df1.fillna(method = 'bfill', inplace = True)
+                    # Original data frame.  4 will be in column A and index 2
+                    # Since there is nothing in front of column A index 4 it will remain NaN
+                    #      A   B   C     D
+                    # 0  1.0 NaN  11  16.0
+                    # 1  2.0 NaN  12   NaN
+                    # 2  NaN NaN  13  18.0
+                    # 3  4.0 NaN  14  19.0
+                    # 4  NaN NaN  15  20.0
+
+
+
+
+
+                    #      A   B   C     D
+                    # # 0  1.0 NaN  11  16.0
+                    # # 1  2.0 NaN  12  18.0
+                    # # 2  4.0 NaN  13  18.0
+                    # # 3  4.0 NaN  14  19.0
+                    # # 4  NaN NaN  15  20.0
+
+
+------------------------------------------------------------------------------------------------------
+-->Data Wrangling()
+------------------------------------------------------------------------------------------------------
+# pd.concat takes an Iterable as its argument. Hence, it cannot take DataFrames directly as its argument.
+# Also Dimensions of the DataFrame should match along axis while concatenating.
+
+# pd.concat works on both axes. while pd.merge works on columns
+# pd.concat has inner(default) and outer joins only, while pd.merge left,right,outer,inner(default)
+
+# pd.DataFrame.merge() has the option to set the column suffixes when merging columns with the same name
+# while for pd.concat this is not possible.
+
+
+
+
+
+------------------------------------------------------------------------------------------------------
+-->merge()
+------------------------------------------------------------------------------------------------------
+# how = inner , outer , left , right
+# Inner Join = intersection on key specified
+# Full outer join = all the elements of all data frames
+# left outer join = all the elements of left data frame + common elements in right data frame
+# right outer join = all the elements of right data frame + common elements in left data frame
+
+
+					# The first data frame is
+					#    key  A1  B1
+					# i1   a   0   5
+					# i2   b   1   6
+					# i3   c   2   7
+					# i4   d   3   8
+					# i5   e   4   9
+
+					# The second data frame is
+					#    key  A2  B2
+					# i1   a   0   3
+					# i2   b   1   4
+					# i3   c   2   5
+
+
+pd.merge(df1, df2 , how = 'inner', on = 'key' )
+					# Merging the data frame
+					#   key  A1  B1  A2  B2
+					# 0   a   0   5   0   3
+					# 1   b   1   6   1   4
+					# 2   c   2   7   2   5
+
+pd.merge(df1, df2 , how = 'outer', on = 'key' )
+					# The full outer join of the data frames is
+					#   key  A1  B1   A2   B2
+					# 0   a   0   5  0.0  3.0
+					# 1   b   1   6  1.0  4.0
+					# 2   c   2   7  2.0  5.0
+					# 3   d   3   8  NaN  NaN
+					# 4   e   4   9  NaN  NaN
+
+pd.merge(df1, df2 , how = 'left', on = 'key' )
+					# The left outer join of the data frames is
+					#   key  A1  B1   A2   B2
+					# 0   a   0   5  0.0  3.0
+					# 1   b   1   6  1.0  4.0
+					# 2   c   2   7  2.0  5.0
+					# 3   d   3   8  NaN  NaN
+					# 4   e   4   9  NaN  NaN
+
+pd.merge(df1, df2 , how = 'right', on = 'key' )
+					# The right outer join of the data frames is
+					#   key  A1  B1  A2  B2
+					# 0   a   0   5   0   3
+					# 2   c   2   7   2   5
+					# 1   b   1   6   1   4
+
+
+# Merging based on multiple keys
+
+                    #left
+					#   key1 key2   A   B
+					# 0    a    a  A0  B0
+					# 1    a    b  A1  B1
+					# 2    b    a  A2  B2
+					# 3    c    b  A3  B3
+
+                    # right
+					#   key1 key2   C   D
+					# 0    a    a  C0  D0
+					# 1    b    b  C1  D1
+					# 2    b    a  C2  D2
+					# 3    c    a  C3  D3
+
+pd.merge(left, right , how = 'right', on = ['key1','key2'] )
+					#   key1 key2    A    B   C   D
+					# 0    a    a   A0   B0  C0  D0
+					# 1    b    a   A2   B2  C2  D2
+					# 2    b    b  NaN  NaN  C1  D1
+					# 3    c    a  NaN  NaN  C3  D3
+
+------------------------------------------------------------------------------------------------------
+-->concat()
+------------------------------------------------------------------------------------------------------
+#concatenate based on columns so since df2 dosent have column 0,1,2,3 that is why it is showing NaN
+
+					# The first data frame is
+					#     A   B   C   D
+					# 0  A0  B0  C0  D0
+					# 3  A3  B3  C3  D3
+					# 1  A1  B1  C1  D1
+					# 2  A2  B2  C2  D2
+
+					# The second data frame is
+					#     A   B   C   D
+					# 4  A4  B4  C4  D4
+					# 5  A5  B5  C5  D5
+					# 6  A6  B6  C6  D6
+					# 7  A7  B7  C7  D7
+
+#Concat based on columns
+pd.concat([df1,df2], axis = 1)
+					#      A    B    C    D    A    B    C    D
+					# 0   A0   B0   C0   D0  NaN  NaN  NaN  NaN
+					# 1   A1   B1   C1   D1  NaN  NaN  NaN  NaN
+					# 2   A2   B2   C2   D2  NaN  NaN  NaN  NaN
+					# 3   A3   B3   C3   D3  NaN  NaN  NaN  NaN
+					# 4  NaN  NaN  NaN  NaN   A4   B4   C4   D4
+					# 5  NaN  NaN  NaN  NaN   A5   B5   C5   D5
+					# 6  NaN  NaN  NaN  NaN   A6   B6   C6   D6
+					# 7  NaN  NaN  NaN  NaN   A7   B7   C7   D7
+
+# concatenate based on rows # No NaN because rows A , B, C ,D  present in both data frames
+print(pd.concat([df1,df2], ))
+					#     A   B   C   D
+					# 0  A0  B0  C0  D0
+					# 1  A1  B1  C1  D1
+					# 2  A2  B2  C2  D2
+					# 3  A3  B3  C3  D3
+					# 4  A4  B4  C4  D4
+					# 5  A5  B5  C5  D5
+					# 6  A6  B6  C6  D6
+					# 7  A7  B7  C7  D7
+

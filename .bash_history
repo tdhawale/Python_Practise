@@ -134,3 +134,8 @@ git status
 git add .
 git commit -m "Learning Pandas"
 git push
+git status
+clear
+git add .
+git commit -m "Learning Pandas"
+git push
