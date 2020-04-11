@@ -144,3 +144,14 @@ git add .
 git commit -m "Pandas Final commit"
 git push
 git status
+git status
+clear
+git add .
+git commit -m "Study Visualisation"
+git push
+git status
+git pull
+git status
+git add .
+git commit -m "DV"
+git push
