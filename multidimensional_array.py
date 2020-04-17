@@ -189,7 +189,7 @@ while cont == 'Y' or cont == 'y':
             print("The random array with 3 rows and 2 colums is: ",arr_rand)
             # Randn return a simple form of standard normal or gaussian distribution
             arr_randn = random.randn(4,4)
-            print("The random array with 3 rows and 2 colums is: " , arr_randn)
+            print("The random array with 4 rows and 4 colums is: " , arr_randn)
             
             #Randint generates a random variable between the specififed range
             arr_randint = random.randint(1,100)             # default size 1 i.r only one element

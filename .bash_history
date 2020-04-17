@@ -155,3 +155,9 @@ git status
 git add .
 git commit -m "DV"
 git push
+git status
+clear
+git status
+git add . 
+git commit -m "Seaborn part 1"
+git push

@@ -1,0 +1,74 @@
+#--------------------------------------------------------------------------------------------------------------------
+# Using Matplotlib
+#--------------------------------------------------------------------------------------------------------------------
+# https://matplotlib.org/gallery/index.html
+# https://matplotlib.org/tutorials/introductory/images.html#sphx-glr-tutorials-introductory-images-py
+
+# Colour styles https://matplotlib.org/3.1.0/gallery/color/named_colors.html
+                    # blue - b
+                    # green - g
+                    # red - r
+                    # magenta - m
+                    # cyan - c
+                    # yellow -w
+                    # black - k
+                    # white - w
+                    # Many different colours are there
+
+# Line Styles https://matplotlib.org/2.0.2/api/lines_api.html
+                    # '-' or 'solid'	solid line
+                    # '--' or 'dashed'	dashed line
+                    # '-.' or 'dashdot'	dash-dotted line
+                    # ':' or 'dotted'	dotted line
+                    # 'None'	draw nothing
+                    # ' '	draw nothing
+                    # ''	draw nothing
+
+# Line Marker
+                    # '.' point  marker
+                    # ',' pixel  marker
+                    # 'o' circle marker
+                    # 'v' triangle_down marker
+                    # '^' triangle_up marker
+                    # '<' triangle_left marker
+                    # '>' triangle_right marker
+                    # '1' tri_down marker
+                    # '2' tri_up marker
+                    # '3' tri_left marker
+                    # '4' tri_right marker
+                    # 's' square marker
+                    # 'p' pentagon marker
+                    # '*' star marker
+                    # 'h' hexagon1 marker
+                    # 'H' hexagon2 marker
+                    # '+' plus marker
+                    # 'x' x marker
+                    # 'D' diamond marker
+                    # 'd' thin_diamond marker
+                    # '|' vline marker
+                    # '_' hline marker
+# fig , axes = plt.subplots( nrows= 2 , ncols=2, sharex = True, sharey = True)
+
+
+
+
+
+
+#------------------------------------------------------------------------------------------------------------
+# Diffeent Plots
+#------------------------------------------------------------------------------------------------------------
+--> Line Plot
+    plt.plot()
+--> Bar Plot
+    plt.bar()
+--> Histogram Plot
+    plt.hist(data)
+--> Stack Plot
+    plt.stackplot(x , y )
+--> Stem Plot
+    plt.stem(x , y )
+--> Box Plot
+    plt.BOX(x , y )
+--> And there are various other plots in matplotlib
+
+
