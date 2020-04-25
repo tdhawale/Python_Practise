@@ -161,3 +161,11 @@ git status
 git add . 
 git commit -m "Seaborn part 1"
 git push
+git status
+clear
+git add . 
+git commit -m "Data Visualisation"
+git push
+pwd
+cd ..
+pwd
