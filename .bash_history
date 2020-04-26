@@ -169,3 +169,9 @@ git push
 pwd
 cd ..
 pwd
+git status
+clear
+git pull
+git add . 
+git commit -m "Idv Assignment 1"
+git push
