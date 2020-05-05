@@ -175,3 +175,34 @@ git pull
 git add . 
 git commit -m "Idv Assignment 1"
 git push
+git status
+git add .
+git commit -m "IDV assignment with interative display"
+git push
+pwd
+cd ..
+ls
+cd ..
+ls
+clear
+cd ..
+ls
+clear
+pwd
+ls
+cd Workspace/
+clear
+ls
+git clone https://github.com/CN-UPB/pg-aicon.git
+git status
+clear
+clear
+cd ..
+ls
+pwd
+clear
+cd Project\ AICON/
+ls
+cd Workspace/
+clear
+git clone https://github.com/CN-UPB/pg-aicon.git
